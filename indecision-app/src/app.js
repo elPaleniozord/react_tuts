@@ -1,16 +1,20 @@
+//babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
 console.log("app.js is running");
 
 // JSX - javascript XML
 
-var app = {
+const app = {
     title: 'Indecision App',
-    subtitle: 'It started!'
+    subtitle: 'It started!',
+    options: ['One', 'Two']
 };
 
-var template = (
+const template = (
 <div>
     <h1>{app.title}</h1>
-    <p>{app.subtitle}</p>
+    {app.subtitle && <p>{app.subtitle}</p>}
+    <p>{app.options.length>0 ? 'Here are your options': 'No options'}</p>
     <ol>
         <li>line one</li>
         <li>line two</li>
@@ -18,23 +22,14 @@ var template = (
 </div>
 );
 
-var user = {
-    name: 'Jacek',
-    age: 29,
-    location: 'Wrocław'
-};
+let count = 0;
+const templateTwo = (
+    <div>
+        <h1>Count: {count}</h1>
+        <button id="my-id" className="button">+1</button>
+    </div>
+)
+console.log(templateTwo)
+const appRoot = document.getElementById('app')
 
-var userName = 'Jacek';
-var userAge = '29';
-var userLocation = 'Wrocław';
-
-var templateTwo = (
-<div>
-    <h1>{'Hello, ' + user.name}</h1>
-    <p>Age: {user.age}</p>
-    <p>Location: {user.location}</p>
-</div>);
-
-var appRoot = document.getElementById('app')
-
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
