@@ -1,55 +1,47 @@
-//babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
-console.log("app.js is running");
+class Header extends React.Component {
+    render(){
+        return (
+            <div>
+                <h1>Indecision</h1>
+                <h2>Put your life in the hands of a computer</h2>
+            </div>
+        )
+    }
+}
+class Action extends React.Component{
+       render(){
+           return(
+               <div>
+                   <button>What should i do?</button>
+               </div>
+           )
+       }
+   }
 
-const app = {
-    title: 'Indecision Application',
-    subtitle: 'It started!',
-    options: []
-};
-
-const onFormSubmit = (e) => {
-    e.preventDefault();
-
-    const option = e.target.elements.option.value;
-    if(option){
-        app.options.push(option);
-        e.target.elements.option.value = '';
-        renderApp();
+class Options extends React.Component{
+    render(){
+        return(
+            <div>Options:</div>
+        )
     }
 }
 
-const removeAll = () => {
-    app.options = [];
-    renderApp();
+class AddOptions extends React.Component{
+    render(){
+        return(
+            <button>Add Option</button>
+        )
+    }
 }
 
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random()*app.options.length);
-    const option = app.options[randomNum];
-    alert(option)
-}
+   const jsx =(
+       <div>
+           <h1>Title</h1>
+           <Header />
+           <Action />
+           <Options />
+           <AddOptions />
+       </div>
+   )
 
-const appRoot = document.getElementById('app')
-
-const numbers = [55, 101, 1000];
-
-const renderApp = () => {
-    const template = (
-        <div>
-            <h1>{app.title}</h1>
-            {app.subtitle && <p>{app.subtitle}</p>}
-            <p>{app.options.length>0 ? 'Here are your options': 'No options'}</p>
-            <button disabled={app.options.length==0} onClick={onMakeDecision}>What Should I Do?</button>
-            <button onClick={removeAll}>Remove All</button>
-            <ol>
-                {app.options.map((option) => <li key={option}>{option}</li>)}
-            </ol>
-            <form onSubmit={onFormSubmit}>
-                <input type="text" name="option"/>
-                <button>Add options</button>
-            </form>
-        </div>
-    );
-    ReactDOM.render(template, appRoot);
-}
-renderApp();
+   ReactDOM.render(jsx, document.getElementById('app'))
