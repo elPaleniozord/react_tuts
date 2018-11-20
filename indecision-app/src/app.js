@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import IndecisionApp from './components/IndecisionApp'
+import IndecisionApp from './components/IndecisionApp';
+import './styles/styles.scss';
 
-ReactDOM.render(<IndecisionApp options={['Devils den', 'Second District']} />, document.getElementById('app'))
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
