@@ -1,9 +1,8 @@
 import React from 'react';
 import Option from './Option.js'
 
-const Options = (props) => {
-    return(
-        <div>
+const Options = (props) => (
+       <div>
             {props.options.map((option)=>
                 (<Option 
                     key={option} 
@@ -15,7 +14,6 @@ const Options = (props) => {
             {props.options.length === 0 && <p>Please add option to get started</p>}
         </div>
         
-    ) 
-}
+)
 
 export default Options;
