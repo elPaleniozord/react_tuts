@@ -30,15 +30,23 @@ const setTextFilter = (text='') => ({
   text
 })
 //sort by date
-const sortByDate = () => {
-
-}
+const sortByDate = () => ({
+  type: 'SORT_BY_DATE'
+})
 //sort by amnt
-const sortByAmount = () => {
-  
-}
+const sortByAmount = () => ({
+  type: 'SORT_BY_AMOUNT'
+})
 //set start date
+const setStartDate = (startDate) => ({
+  type: 'SET_START_DATE',
+  startDate
+})
 //set end date
+const setEndDate = (endDate) => ({
+  type: 'SET_END_DATE',
+  endDate
+})
 
 const expensesReducerDefaultState =[];
 
@@ -75,7 +83,15 @@ const filterReducerDefaultState = {
 const filterReducer = (state=filterReducerDefaultState, action) => {
   switch(action.type) {
     case 'SET_TEXT_FILTER':
-      return {...state, text: action.text}
+      return {...state, text: action.text};
+    case 'SORT_BY_DATE':
+      return {...state, sortBy: 'date'}
+    case 'SORT_BY_AMOUNT':
+      return {...state, sortBy: 'amount'}
+    case 'SET_START_DATE':
+      return {...state, startDate: action.startDate}
+    case 'SET_END_DATE':
+      return {...state, endDate: action.endDate}
     default: return state;
   }
 }
@@ -91,17 +107,23 @@ store.subscribe(()=>{
   console.log(store.getState());
 })
 
-const expenseOne = store.dispatch(addExpense({description: 'Rent', amount: 100}))
-const expenseTwo = store.dispatch(addExpense({description: 'Stuff', amount: 100}))
-const expenseThree = store.dispatch(addExpense({description: 'Groceries', amount: 250}))
-const expenseFour = store.dispatch(addExpense({description: 'Coffee', amount: 400}))
+// const expenseOne = store.dispatch(addExpense({description: 'Rent', amount: 100}))
+// const expenseTwo = store.dispatch(addExpense({description: 'Stuff', amount: 100}))
+// const expenseThree = store.dispatch(addExpense({description: 'Groceries', amount: 250}))
+// const expenseFour = store.dispatch(addExpense({description: 'Coffee', amount: 400}))
 
-store.dispatch(removeExpense({id: expenseOne.expense.id}))
-store.dispatch(editExpense(expenseTwo.expense.id, {amount: 500}))
+// store.dispatch(removeExpense({id: expenseOne.expense.id}))
+// store.dispatch(editExpense(expenseTwo.expense.id, {amount: 500}))
 
-store.dispatch(setTextFilter('rent'))
+// store.dispatch(setTextFilter('rent'))
 
-console.log(store.getState())
+// store.dispatch(sortByAmount());
+
+// store.dispatch(sortByDate());
+
+store.dispatch(setStartDate(125));
+store.dispatch(setStartDate());
+store.dispatch(setEndDate(1250));
 
 const demoState = {
   expenses: [{
